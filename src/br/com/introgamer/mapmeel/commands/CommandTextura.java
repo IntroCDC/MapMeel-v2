@@ -14,7 +14,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandTextura implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
@@ -23,7 +23,12 @@ public class CommandTextura implements CommandExecutor {
             }
         }
 
-        final Player p = (Player) sender;
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
+        }
+
+        Player p = (Player) sender;
 
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole " + sender.getName() + " esta baixando a textura...");
 

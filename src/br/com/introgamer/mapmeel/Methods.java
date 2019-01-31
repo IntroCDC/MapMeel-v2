@@ -16,7 +16,7 @@ import br.com.introgamer.mapmeel.variables.scoreManager;
 public class Methods {
 
     public static void Errou() {
-        final double perderPorErro = 1.0;
+        double perderPorErro = 1.0;
 
         if (Variables.MLGCommand) {
             Bukkit.getServer().broadcastMessage(Strings.prefix + "§4§lERROOOUUU O MLG!");
@@ -76,43 +76,43 @@ public class Methods {
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "playsound mapmeel.errou @a -1662 50 639 50000 1");
 
         if (Variables.failstotal == 50) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel50Deaths", "§7Será que consegue 100? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 100) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel100Deaths", "§7Será que consegue 150? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 150) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel150Deaths", "§7Será que consegue 200? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 200) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel200Deaths", "§7Será que consegue 250? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 250) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel250Deaths", "§7Será que consegue 300? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 300) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel300Deaths", "§7Será que consegue 350? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 350) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel350Deaths", "§7Será que consegue 400? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 400) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel400Deaths", "§7Será que consegue 450? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 450) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel450Deaths", "§7Será que consegue 500? kkkkkk ;3 (zuera kk)");
             }
         } else if (Variables.failstotal == 500) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel500Deaths", "§7Carai '=' 500 Deaths em kk");
             }
         }
@@ -129,7 +129,7 @@ public class Methods {
                     Variables.Audio = 0;
                     try {
                         Bukkit.getPlayer(Strings.Jogador).sendMessage(Strings.prefix + "§6Áudio parado com Sucesso!");
-                    } catch (final Exception e) {
+                    } catch (Exception e) {
                         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§6Ocorreu um erro ao pegar o Jogador In-Game de /audio parar");
                         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§6Áudio parado com Sucesso!");
                     }
@@ -199,7 +199,7 @@ public class Methods {
         Variables.Jogadores.add(Jogadores.FelipeHeroPlay);
         Variables.Jogadores.add(Jogadores.Mariao);
 
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (Variables.Block) {
                 if (!Variables.Permitidos.contains(p.getName()) && !Variables.Jogadores.contains(p.getName()) && !p.getName().equalsIgnoreCase(Jogadores.Meel)) {
                     p.kickPlayer(Strings.prefix + "§4Você não tem permissão para entrar neste servidor!");
@@ -261,7 +261,7 @@ public class Methods {
             @Override
             public void run() {
 
-                for (final Player p : Bukkit.getOnlinePlayers()) {
+                for (Player p : Bukkit.getOnlinePlayers()) {
                     if (!Variables.Jogadores.contains(p.getName()) && !Variables.Permitidos.contains(p.getName())) {
                         p.kickPlayer(Strings.prefix + "§cServidor/Mapa Resetado!");
                     }

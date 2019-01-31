@@ -16,13 +16,13 @@ public class Updaters {
 
     public static void Loop2() {
 
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             scoreManager.getManager().Scoreboard(p);
         }
 
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (Jogadores.admins.contains(p.getName())) {
-                for (final Player player : Bukkit.getOnlinePlayers()) {
+                for (Player player : Bukkit.getOnlinePlayers()) {
                     if (!Variables.Jogadores.contains(player.getName()) && !Variables.Permitidos.contains(player.getName())) {
                         player.hidePlayer(p);
                     }

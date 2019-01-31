@@ -11,7 +11,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandConfirm implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!Variables.ConfirmOn) {
             sender.sendMessage(Strings.prefix + "§cComando sem função para confirmar!");

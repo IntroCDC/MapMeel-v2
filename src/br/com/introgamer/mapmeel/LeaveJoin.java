@@ -1,7 +1,12 @@
 package br.com.introgamer.mapmeel;
 
+import br.com.introgamer.mapmeel.variables.Jogadores;
+import br.com.introgamer.mapmeel.variables.Strings;
+import br.com.introgamer.mapmeel.variables.Variables;
+import br.com.introgamer.mapmeel.variables.scoreManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,15 +16,10 @@ import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import br.com.introgamer.mapmeel.variables.Jogadores;
-import br.com.introgamer.mapmeel.variables.Strings;
-import br.com.introgamer.mapmeel.variables.Variables;
-import br.com.introgamer.mapmeel.variables.scoreManager;
-
 public class LeaveJoin implements Listener {
 
     @EventHandler
-    public void onPlayerJoin(final PlayerJoinEvent e) {
+    public void onPlayerJoin(PlayerJoinEvent e) {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§2§l-----------------------------");
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§a§lNotificação: Jogador entrou do servidor");
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§a§lNick: " + e.getPlayer().getName());
@@ -27,7 +27,7 @@ public class LeaveJoin implements Listener {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§a§lIP: " + e.getPlayer().getAddress());
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§2§l-----------------------------");
 
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (Variables.Jogadores.contains(p.getName())) {
                 p.sendMessage(Strings.prefix + "§2§l-----------------------------");
                 p.sendMessage(Strings.prefix + "§a§lNotificação: Jogador entrou do servidor");
@@ -49,6 +49,14 @@ public class LeaveJoin implements Listener {
                 e.getPlayer().setOp(false);
             }
         }
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.NOTE_BASS, 1, 50000);
+                e.getPlayer().sendMessage(Strings.prefix + "§fLink para baixar textura atualizada: §a§lhttp://www.mapmeel.com.br/assets/template/files/MapMeelv2Texture.zip");
+            }
+        }.runTaskLater(Variables.plugin, 100L);
 
         if (e.getPlayer().getName().equalsIgnoreCase(Jogadores.Meel)) {
             Bukkit.getPlayer(Jogadores.Meel).setCustomName(Jogadores.Meel);
@@ -420,7 +428,7 @@ public class LeaveJoin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerLogin(final PlayerLoginEvent e) {
+    public void onPlayerLogin(PlayerLoginEvent e) {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§6§l-----------------------------");
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§e§lNotificação: Jogador logando no servidor");
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§e§lNick: " + e.getPlayer().getName());
@@ -428,7 +436,7 @@ public class LeaveJoin implements Listener {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§e§lIP: " + e.getPlayer().getAddress());
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§6§l-----------------------------");
 
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (Variables.Jogadores.contains(p.getName())) {
                 p.sendMessage(Strings.prefix + "§6§l-----------------------------");
                 p.sendMessage(Strings.prefix + "§e§lNotificação: Jogador logando no servidor");
@@ -478,7 +486,7 @@ public class LeaveJoin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerQuit(final PlayerQuitEvent e) {
+    public void onPlayerQuit(PlayerQuitEvent e) {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§4§l-----------------------------");
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§c§lNotificação: Jogador saiu do servidor");
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§c§lNick: " + e.getPlayer().getName());
@@ -486,7 +494,7 @@ public class LeaveJoin implements Listener {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§c§lIP: " + e.getPlayer().getAddress());
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§4§l-----------------------------");
 
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (Variables.Jogadores.contains(p.getName())) {
                 p.sendMessage(Strings.prefix + "§4§l-----------------------------");
                 p.sendMessage(Strings.prefix + "§c§lNotificação: Jogador saiu do servidor");

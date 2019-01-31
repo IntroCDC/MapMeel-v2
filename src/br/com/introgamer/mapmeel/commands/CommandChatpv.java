@@ -13,13 +13,18 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandChatpv implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
                 sender.sendMessage(Strings.prefix + Strings.semPerm);
                 return true;
             }
+        }
+
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
         }
 
         if (!Variables.Jogadores.contains(sender.getName())) {
@@ -31,7 +36,7 @@ public class CommandChatpv implements CommandExecutor {
             Variables.ChatPrivate.remove(sender.getName());
             sender.sendMessage(Strings.prefix + "§6Você saiu do Chat Private!");
 
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 if (Variables.Jogadores.contains(p.getName())) {
                     p.sendMessage(Strings.prefix + "§c§l" + sender.getName() + " Saiu do Chat Private!");
                 }
@@ -40,7 +45,7 @@ public class CommandChatpv implements CommandExecutor {
             Variables.ChatPrivate.add(sender.getName());
             sender.sendMessage(Strings.prefix + "§6Você entrou no Chat Private!");
 
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 if (Variables.Jogadores.contains(p.getName())) {
                     p.sendMessage(Strings.prefix + "§a§l" + sender.getName() + " Entrou no Chat Private!");
                 }

@@ -12,7 +12,7 @@ public class CommandsBlocker implements Listener {
     String msg = "§cComando bloqueado!";
 
     @EventHandler
-    public void onPlayerCommandPreprocess(final PlayerCommandPreprocessEvent e) {
+    public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent e) {
         if (!Variables.Jogadores.contains(e.getPlayer().getName())) {
             if (e.getMessage().contains("tell")) {
                 e.getPlayer().sendMessage(Strings.prefix + this.msg);

@@ -14,13 +14,18 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandGamemode implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
                 sender.sendMessage(Strings.prefix + Strings.semPerm);
                 return true;
             }
+        }
+
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
         }
 
         if (args.length == 0) {
@@ -32,7 +37,7 @@ public class CommandGamemode implements CommandExecutor {
                 return true;
             }
 
-            final Player p = (Player) sender;
+            Player p = (Player) sender;
 
             if (args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("survival") || args[0].equalsIgnoreCase("sobrevivencia") || args[0].equalsIgnoreCase("s")) {
                 p.setGameMode(GameMode.SURVIVAL);
@@ -60,7 +65,7 @@ public class CommandGamemode implements CommandExecutor {
                 return true;
             }
 
-            final Player p = Bukkit.getPlayer(args[1]);
+            Player p = Bukkit.getPlayer(args[1]);
 
             if (args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("survival") || args[0].equalsIgnoreCase("sobrevivencia") || args[0].equalsIgnoreCase("s")) {
                 p.setGameMode(GameMode.SURVIVAL);

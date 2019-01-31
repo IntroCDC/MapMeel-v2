@@ -13,13 +13,18 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandBlock implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
                 sender.sendMessage(Strings.prefix + Strings.semPerm);
                 return true;
             }
+        }
+
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
         }
 
         if (args.length != 1) {
@@ -29,7 +34,7 @@ public class CommandBlock implements CommandExecutor {
             if (args[0].equalsIgnoreCase("true")) {
                 Variables.Block = true;
 
-                for (final Player p : Bukkit.getOnlinePlayers()) {
+                for (Player p : Bukkit.getOnlinePlayers()) {
                     if (!Variables.Jogadores.contains(p.getName()) && !Variables.Permitidos.contains(p.getName()) && !p.getName().equalsIgnoreCase(Jogadores.Meel)) {
                         p.kickPlayer(Strings.prefix + "§4§lO SERVIDOR FOI BLOQUEADO!");
                     }

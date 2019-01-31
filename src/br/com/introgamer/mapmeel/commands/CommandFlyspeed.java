@@ -12,13 +12,17 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandFlyspeed implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
                 sender.sendMessage(Strings.prefix + Strings.semPerm);
                 return true;
             }
+        }
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
         }
         if (!(sender instanceof Player)) {
             sender.sendMessage(Strings.prefix + Strings.inGame);
@@ -32,8 +36,8 @@ public class CommandFlyspeed implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase("reset")) {
-            final String normal = "0.1";
-            final float numero = (float) Double.parseDouble(normal);
+            String normal = "0.1";
+            float numero = (float) Double.parseDouble(normal);
             ((Player) sender).setFlySpeed(numero);
 
             sender.sendMessage(Strings.prefix + "§bVelocidade de Voo resetada para: " + numero);
@@ -41,7 +45,7 @@ public class CommandFlyspeed implements CommandExecutor {
         }
 
         try {
-            final float numero = (float) Double.parseDouble(args[0]);
+            float numero = (float) Double.parseDouble(args[0]);
 
             if (numero > 1.0) {
                 sender.sendMessage(Strings.prefix + "§cVelocidade Máxima: 1.0");
@@ -55,7 +59,7 @@ public class CommandFlyspeed implements CommandExecutor {
 
             sender.sendMessage(Strings.prefix + "§bVelocidade de Voo alterada para: " + numero);
             return true;
-        } catch (final Exception e) {
+        } catch (Exception e) {
             sender.sendMessage(Strings.prefix + "§cUse apenas números e pontos!");
             return true;
         }

@@ -25,13 +25,18 @@ public class CommandEvento implements CommandExecutor {
     public static int lastZ = 0;
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
                 sender.sendMessage(Strings.prefix + Strings.semPerm);
                 return true;
             }
+        }
+
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
         }
 
         if (args.length == 0) {
@@ -41,7 +46,7 @@ public class CommandEvento implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase("dragao")) {
-            final EnderDragon dragao = (EnderDragon) Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), -2623.0, 118.0, 659.0), EntityType.ENDER_DRAGON);
+            EnderDragon dragao = (EnderDragon) Bukkit.getWorld("world").spawnEntity(new Location(Bukkit.getWorld("world"), -2623.0, 118.0, 659.0), EntityType.ENDER_DRAGON);
 
             dragao.setCustomName("§9§lSEU MAIOR PESADELO!!!");
             dragao.setCustomNameVisible(true);
@@ -94,7 +99,7 @@ public class CommandEvento implements CommandExecutor {
         if (args[0].equalsIgnoreCase("testerp")) {
             Variables.NaoPassouDoTeste.clear();
 
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 Variables.NaoPassouDoTeste.add(p.getName());
             }
 
@@ -106,7 +111,7 @@ public class CommandEvento implements CommandExecutor {
                 @Override
                 public void run() {
 
-                    for (final Player p : Bukkit.getOnlinePlayers()) {
+                    for (Player p : Bukkit.getOnlinePlayers()) {
                         if (Variables.NaoPassouDoTeste.contains(p.getName())) {
                             p.kickPlayer(Strings.prefix + "§4§lVocê é obrigado(a) a usar a textura no MapMeel!");
                         }
@@ -119,7 +124,7 @@ public class CommandEvento implements CommandExecutor {
             }.runTaskLater(Variables.plugin, 200L);
         } else if (args[0].equalsIgnoreCase("limparchat")) {
 
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendMessage(" ");
                 p.sendMessage(" ");
                 p.sendMessage(" ");
@@ -270,8 +275,8 @@ public class CommandEvento implements CommandExecutor {
 
             sender.sendMessage(Strings.prefix + "§4§lRESPIRO ATIVADO PARA O JOGADOR " + Bukkit.getPlayer(args[1]).getName() + "!");
 
-            final ArrayList<String> Respiro = new ArrayList<>();
-            final ArrayList<String> Jumpscare = new ArrayList<>();
+            ArrayList<String> Respiro = new ArrayList<>();
+            ArrayList<String> Jumpscare = new ArrayList<>();
 
             Respiro.add("fnafr1");
             Respiro.add("fnafr2");
@@ -286,11 +291,11 @@ public class CommandEvento implements CommandExecutor {
             Jumpscare.add("fnafjumpgf");
             Jumpscare.add("fnafjump4f");
 
-            final Random RRandom = new Random();
-            final String REscolhido = Respiro.get(RRandom.nextInt(Respiro.size()));
+            Random RRandom = new Random();
+            String REscolhido = Respiro.get(RRandom.nextInt(Respiro.size()));
 
-            final Random JRandom = new Random();
-            final String JEscolhido = Jumpscare.get(JRandom.nextInt(Jumpscare.size()));
+            Random JRandom = new Random();
+            String JEscolhido = Jumpscare.get(JRandom.nextInt(Jumpscare.size()));
 
             Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "audio " + REscolhido);
             Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole §4§l" + sender.getName() + " ATIVOU O EVENTO RESPIRO PARA " + Bukkit.getPlayer(args[1]).getName() + "!!!!!");

@@ -12,7 +12,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandMessage implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
@@ -21,7 +21,12 @@ public class CommandMessage implements CommandExecutor {
             }
         }
 
-        final StringBuilder buffer = new StringBuilder();
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
+        }
+
+        StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < args.length; i++) {
             if (i != 0) {
                 buffer.append(" ").append(args[i]);

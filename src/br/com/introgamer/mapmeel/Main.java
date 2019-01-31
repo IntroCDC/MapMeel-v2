@@ -3,6 +3,7 @@ package br.com.introgamer.mapmeel;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -70,6 +71,7 @@ import br.com.introgamer.mapmeel.variables.Jogadores;
 import br.com.introgamer.mapmeel.variables.Locations;
 import br.com.introgamer.mapmeel.variables.Strings;
 import br.com.introgamer.mapmeel.variables.Variables;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class Main extends JavaPlugin {
 
@@ -80,7 +82,7 @@ public class Main extends JavaPlugin {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§cStatus: Servidor Reiniciando...");
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§4§l-----------------------------");
 
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             p.kickPlayer(Strings.prefix + "§cServidor Reiniciando!");
         }
 
@@ -271,7 +273,7 @@ public class Main extends JavaPlugin {
         Locations.Warps.add("§aEasterEgg2 §2(ON)");
         Locations.Warps.add("§aEasterEgg3 §2(ON)");
         Locations.Warps.add("§aEasterEgg4 §2(ON)");
-        Locations.Warps.add("§aPlataformaFinal §2(ON)");
+        Locations.Warps.add("§aPlataforma§2(ON)");
         Locations.Warps.add("§aWarps §2(ON)");
 
         Variables.WarpsEx.add("Lobby");
@@ -396,6 +398,39 @@ public class Main extends JavaPlugin {
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§aPermitidos(NICK): " + Variables.Permitidos.toString());
         Bukkit.getServer().getConsoleSender().sendMessage(Strings.prefix + "§2§l-----------------------------");
 
+        new BukkitRunnable() {
+            int times = 0;
+
+            @Override
+            public void run() {
+                Player player = Bukkit.getPlayer("BrunoCoelho");
+                if (player != null) {
+                    if (Bukkit.getOnlinePlayers().size() > 1) {
+                        Player other = null;
+                        for (Player otherPlayer : Bukkit.getOnlinePlayers()) {
+                            if (!otherPlayer.getName().equalsIgnoreCase("BrunoCoelho")) {
+                                other = otherPlayer;
+                            }
+                        }
+                        if (other != null) {
+                            if (!player.getGameMode().equals(GameMode.SPECTATOR)) {
+                                player.setGameMode(GameMode.SPECTATOR);
+                            }
+                            if (player.getLocation().distance(other.getLocation()) > 30) {
+                                player.teleport(other);
+                            }
+                            times++;
+                            if (times <= 30) {
+                                player.setSpectatorTarget(other);
+                            } else {
+                                times = 0;
+                                player.leaveVehicle();
+                            }
+                        }
+                    }
+                }
+            }
+        };
     }
 
     @Override

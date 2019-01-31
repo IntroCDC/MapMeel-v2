@@ -18,10 +18,10 @@ import java.util.Objects;
 public class JogarListener implements Listener {
 
     @EventHandler
-    public void onInventoryClick(final InventoryClickEvent e) {
+    public void onInventoryClick(InventoryClickEvent e) {
         try {
             if (Objects.equals(e.getInventory().getName(), Strings.invWarpList)) {
-                final Player p = (Player) e.getWhoClicked();
+                Player p = (Player) e.getWhoClicked();
 
                 e.setCancelled(true);
 
@@ -221,7 +221,7 @@ public class JogarListener implements Listener {
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "scoremanager setlevel PlataformaFinal");
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "spawnpoint @a -8 94 5");
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole " + e.getWhoClicked().getName() + " Entrou no LobbyPrincipal! §a(/jogar)");
-                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "warp plataformafinal " + e.getWhoClicked().getName());
+                    Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "warp plataforma" + e.getWhoClicked().getName());
                     p.sendTitle(ChatColor.GOLD + "" + ChatColor.BOLD + "Teleportado para a PF!", "§7");
                 } else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Strings.Mapa)) {
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole " + e.getWhoClicked().getName() + " Está resetando o Mapa! §a(/jogar)");
@@ -234,7 +234,7 @@ public class JogarListener implements Listener {
                 e.getWhoClicked().closeInventory();
             }
 
-        } catch (final Exception ignored) {
+        } catch (Exception ignored) {
         }
 
     }

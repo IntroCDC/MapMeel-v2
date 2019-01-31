@@ -10,10 +10,15 @@ import br.com.introgamer.mapmeel.variables.Strings;
 public class CommandLeiti implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(Strings.prefix + Strings.inGame);
+            return true;
+        }
+
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
             return true;
         }
 

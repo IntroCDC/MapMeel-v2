@@ -14,13 +14,18 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandInvis implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
                 sender.sendMessage(Strings.prefix + Strings.semPerm);
                 return true;
             }
+        }
+
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
         }
 
         if (!(sender instanceof Player)) {
@@ -34,7 +39,7 @@ public class CommandInvis implements CommandExecutor {
 
         ((Player) sender).setGameMode(GameMode.SPECTATOR);
         sender.sendMessage(Strings.prefix + "§bVocê está invisível!");
-        for (final Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if (!Variables.Jogadores.contains(p.getName()) && !Variables.Permitidos.contains(p.getName())) {
                 p.hidePlayer((Player) sender);
             }

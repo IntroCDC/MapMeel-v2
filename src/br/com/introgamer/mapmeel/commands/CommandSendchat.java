@@ -12,7 +12,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandSendchat implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
@@ -21,12 +21,17 @@ public class CommandSendchat implements CommandExecutor {
             }
         }
 
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
+        }
+
         if (args.length <= 1) {
             sender.sendMessage(Strings.prefix + "§bUse: /sendchat [NICK] Chat");
             return true;
         }
 
-        final int ultimo = args.length - 1;
+        int ultimo = args.length - 1;
 
         if (Bukkit.getPlayer(args[ultimo]) == null) {
             sender.sendMessage(Strings.prefix + "§c" + args[ultimo] + Strings.naoOnline);
@@ -38,10 +43,10 @@ public class CommandSendchat implements CommandExecutor {
             return true;
         }
 
-        final String Jogador = args[ultimo];
+        String Jogador = args[ultimo];
         args[ultimo] = "";
 
-        final StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder();
         for (int i = 0; i < args.length; i++) {
             if (i != 0) {
                 s.append(" ").append(args[i]);

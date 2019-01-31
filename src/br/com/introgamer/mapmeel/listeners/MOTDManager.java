@@ -15,7 +15,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class MOTDManager implements Listener {
 
     @EventHandler
-    public void onServerListPing(final ServerListPingEvent e) {
+    public void onServerListPing(ServerListPingEvent e) {
         if (Bukkit.getPlayer(Jogadores.Meel) != null) {
             e.setMotd(Strings.prefix + "§4§lA Meel Está no Servidor!");
 
@@ -23,9 +23,9 @@ public class MOTDManager implements Listener {
         } else {
             e.setMaxPlayers(Bukkit.getServer().getOnlinePlayers().size() + 1);
 
-            final Random Randomizador = new Random();
+            Random Randomizador = new Random();
 
-            final String MOTDEscolhido = Variables.MOTDs.get(Randomizador.nextInt(Variables.MOTDs.size()));
+            String MOTDEscolhido = Variables.MOTDs.get(Randomizador.nextInt(Variables.MOTDs.size()));
 
             if (MOTDEscolhido.equalsIgnoreCase("DIASRestantes")) {
 
@@ -34,17 +34,17 @@ public class MOTDManager implements Listener {
                 int MinutosRestantes;
                 int SegundosRestantes;
 
-                final String MesStringAtual = Variables.Mes.format(Calendar.getInstance().getTime());
-                final String DiaStringAtual = Variables.Dia.format(Calendar.getInstance().getTime());
-                final String HoraStringAtual = Variables.Hora.format(Calendar.getInstance().getTime());
-                final String MinutoStringAtual = Variables.Minuto.format(Calendar.getInstance().getTime());
-                final String SegundoStringAtual = Variables.Segundo.format(Calendar.getInstance().getTime());
+                String MesStringAtual = Variables.Mes.format(Calendar.getInstance().getTime());
+                String DiaStringAtual = Variables.Dia.format(Calendar.getInstance().getTime());
+                String HoraStringAtual = Variables.Hora.format(Calendar.getInstance().getTime());
+                String MinutoStringAtual = Variables.Minuto.format(Calendar.getInstance().getTime());
+                String SegundoStringAtual = Variables.Segundo.format(Calendar.getInstance().getTime());
 
-                final int MesAtual = (int) Double.parseDouble(MesStringAtual);
-                final int DiaAtual = (int) Double.parseDouble(DiaStringAtual);
-                final int HoraAtual = (int) Double.parseDouble(HoraStringAtual);
-                final int MinutoAtual = (int) Double.parseDouble(MinutoStringAtual);
-                final int SegundoAtual = (int) Double.parseDouble(SegundoStringAtual);
+                int MesAtual = (int) Double.parseDouble(MesStringAtual);
+                int DiaAtual = (int) Double.parseDouble(DiaStringAtual);
+                int HoraAtual = (int) Double.parseDouble(HoraStringAtual);
+                int MinutoAtual = (int) Double.parseDouble(MinutoStringAtual);
+                int SegundoAtual = (int) Double.parseDouble(SegundoStringAtual);
 
                 DiasRestantes = 41 - DiaAtual;
                 HorasRestantes = 24 - HoraAtual;
@@ -199,7 +199,7 @@ public class MOTDManager implements Listener {
                 }
 
             } else if (MOTDEscolhido.equalsIgnoreCase("DIA")) {
-                final String DiaStringAtual = "" + Variables.DIA.format(Calendar.getInstance().getTime());
+                String DiaStringAtual = "" + Variables.DIA.format(Calendar.getInstance().getTime());
                 e.setMotd(Strings.prefix + "§6Agora são: §e" + DiaStringAtual);
             } else {
                 e.setMotd(MOTDEscolhido);

@@ -23,7 +23,7 @@ public class Variables {
 
     public static int failstotal = 0;
 
-    public static boolean GmIntro = false;
+    public static boolean GmIntro = true;
 
     public static SimpleDateFormat Hora = new SimpleDateFormat("HH");
 
@@ -53,7 +53,7 @@ public class Variables {
 
     public static double MLGYJogador = 0;
 
-    public static boolean ModoEditor = false;
+    public static boolean ModoEditor = true;
 
     public static ArrayList<String> MOTDs = new ArrayList<>();
 

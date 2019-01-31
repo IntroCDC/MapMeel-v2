@@ -12,7 +12,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandTransformar implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
@@ -21,7 +21,7 @@ public class CommandTransformar implements CommandExecutor {
             }
         }
 
-        if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
+        if (!sender.isOp()) {
             sender.sendMessage(Strings.prefix + Strings.semPerm);
             return true;
         }

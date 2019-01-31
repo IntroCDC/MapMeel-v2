@@ -13,7 +13,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandMoney implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (args.length == 0) {
             sender.sendMessage(Strings.prefix + "§aMoney: " + Variables.Dinheiro);
@@ -28,6 +28,11 @@ public class CommandMoney implements CommandExecutor {
                 }
             }
 
+            if (!sender.isOp()) {
+                sender.sendMessage(Strings.prefix + Strings.semPerm);
+                return true;
+            }
+
             if (args.length == 1) {
                 sender.sendMessage(Strings.prefix + "§bUse: /" + command.getName() + " give [quantidade]");
                 return true;
@@ -36,7 +41,7 @@ public class CommandMoney implements CommandExecutor {
             try {
                 Variables.Dinheiro = Variables.Dinheiro + Double.parseDouble(args[1]);
 
-                final double numero = Double.parseDouble(args[1]);
+                double numero = Double.parseDouble(args[1]);
 
                 if (sender instanceof Player) {
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole " + sender.getName() + " deu " + args[1] + " de Money!");
@@ -44,7 +49,7 @@ public class CommandMoney implements CommandExecutor {
 
                 Bukkit.broadcastMessage(Strings.prefix + "§2§lParabéns! §aVocê ganhou " + numero + " de Money por ter ganhado a Fase!");
                 Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "playsound random.levelup @a -1662 50 639 50000 1");
-            } catch (final Exception e) {
+            } catch (Exception e) {
                 sender.sendMessage(Strings.prefix + "§cUse Apenas números e pontos!");
                 return true;
             }
@@ -58,6 +63,11 @@ public class CommandMoney implements CommandExecutor {
                 }
             }
 
+            if (!sender.isOp()) {
+                sender.sendMessage(Strings.prefix + Strings.semPerm);
+                return true;
+            }
+
             if (args.length == 1) {
                 sender.sendMessage(Strings.prefix + "§bUse: /" + command.getName() + " set [quantidade]");
                 return true;
@@ -66,7 +76,7 @@ public class CommandMoney implements CommandExecutor {
             try {
                 Variables.Dinheiro = Double.parseDouble(args[1]);
 
-                final double numero = Double.parseDouble(args[1]);
+                double numero = Double.parseDouble(args[1]);
 
                 if (sender instanceof Player) {
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole " + sender.getName() + " setou o Dinheiro para " + args[1] + "!");
@@ -74,7 +84,7 @@ public class CommandMoney implements CommandExecutor {
 
                 Bukkit.broadcastMessage(Strings.prefix + "§aMoney foi alterado para " + numero + "!");
                 Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "playsound random.levelup @a -1662 50 639 50000 1");
-            } catch (final Exception e) {
+            } catch (Exception e) {
                 sender.sendMessage(Strings.prefix + "§cUse Apenas números e pontos!");
                 return true;
             }
@@ -88,13 +98,18 @@ public class CommandMoney implements CommandExecutor {
                 }
             }
 
+            if (!sender.isOp()) {
+                sender.sendMessage(Strings.prefix + Strings.semPerm);
+                return true;
+            }
+
             if (args.length == 1) {
                 sender.sendMessage(Strings.prefix + "§bUse: /" + command.getName() + " remove [quantidade]");
                 return true;
             }
 
             try {
-                final double numero = Double.parseDouble(args[1]);
+                double numero = Double.parseDouble(args[1]);
 
                 if (Variables.Dinheiro < Double.parseDouble(args[1])) {
                     Variables.Dinheiro = 0.0;
@@ -107,7 +122,7 @@ public class CommandMoney implements CommandExecutor {
                 if (sender instanceof Player) {
                     Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole " + sender.getName() + " removeu " + args[1] + " de Money!");
                 }
-            } catch (final Exception e) {
+            } catch (Exception e) {
                 sender.sendMessage(Strings.prefix + "§cUse Apenas números e pontos!");
                 return true;
             }

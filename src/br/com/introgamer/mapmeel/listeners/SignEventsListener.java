@@ -20,7 +20,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class SignEventsListener implements Listener {
 
     @EventHandler
-    public void onPlayerClickSign(final PlayerInteractEvent e) {
+    public void onPlayerClickSign(PlayerInteractEvent e) {
         try {
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock() != null) {
                 if (e.getPlayer().getItemInHand().getType() == Material.MUSHROOM_SOUP) {
@@ -51,9 +51,9 @@ public class SignEventsListener implements Listener {
                 }
 
                 if (e.getClickedBlock().getType() == Material.WALL_SIGN || e.getClickedBlock().getType() == Material.SIGN_POST) {
-                    final Sign s = (Sign) e.getClickedBlock().getState();
+                    Sign s = (Sign) e.getClickedBlock().getState();
 
-                    final String[] lines = s.getLines();
+                    String[] lines = s.getLines();
                     if (lines[0].equalsIgnoreCase(Strings.Mapa)) {
                         if (lines[1].equalsIgnoreCase("§aCompra")) {
                             if (lines[2].isEmpty()) {
@@ -64,7 +64,7 @@ public class SignEventsListener implements Listener {
                                 e.getPlayer().sendMessage(Strings.prefix + "§cNão há nenhum preço registrado nessa placa!");
                                 return;
                             }
-                            final double preco = Double.parseDouble(lines[3]);
+                            double preco = Double.parseDouble(lines[3]);
                             if (Variables.Dinheiro < preco) {
                                 e.getPlayer().sendMessage(Strings.prefix + "§cVocê não tem Money suficiente para isso!");
                                 return;
@@ -72,7 +72,7 @@ public class SignEventsListener implements Listener {
 
                             Variables.Dinheiro = Variables.Dinheiro - preco;
 
-                            final ArrayList<String> Lore = new ArrayList<>();
+                            ArrayList<String> Lore = new ArrayList<>();
                             Lore.add("§7Guarde este item em um local seguro!");
                             Lore.add("§7Você pode usar isto para");
                             Lore.add("§7Desbloquear algo depois...");
@@ -122,14 +122,14 @@ public class SignEventsListener implements Listener {
 
                             return;
                         } else if (lines[1].equalsIgnoreCase("§aVenda")) {
-                            final double precoCada = 10.0;
+                            double precoCada = 10.0;
 
                             if (e.getPlayer().getInventory().getItemInHand().getType() == Material.AIR) {
                                 e.getPlayer().sendMessage(Strings.prefix + "§cSegure um Item para vender!");
                                 return;
                             }
 
-                            final double precoPorItem = precoCada * e.getPlayer().getInventory().getItemInHand().getAmount();
+                            double precoPorItem = precoCada * e.getPlayer().getInventory().getItemInHand().getAmount();
 
                             e.getPlayer().sendMessage(Strings.prefix + "§2§lItem vendido com Sucesso! §aItem: " + e.getPlayer().getItemInHand().getType() + " Quantidade Ganha: " + precoPorItem);
                             Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "give " + e.getPlayer().getName() + " " + lines[2]);
@@ -192,19 +192,19 @@ public class SignEventsListener implements Listener {
                 }
             }
 
-        } catch (final Exception ignored) {
+        } catch (Exception ignored) {
         }
     }
 
     @EventHandler
-    public void onSignEdit(final SignChangeEvent e) {
+    public void onSignEdit(SignChangeEvent e) {
         if (!Variables.Permitidos.contains(e.getPlayer().getName()) && !Variables.Jogadores.contains(e.getPlayer().getName()) && !e.getPlayer().getName().equalsIgnoreCase(Jogadores.Meel)) {
             e.getPlayer().sendMessage(Strings.prefix + Strings.semPerm);
             e.setCancelled(true);
             return;
         }
 
-        final String[] lines = e.getLines();
+        String[] lines = e.getLines();
 
         if (lines.length > 1 && lines[0].equalsIgnoreCase("[MapMeel]")) {
             if (e.getPlayer().getName().equalsIgnoreCase(Jogadores.Meel)) {
@@ -229,9 +229,9 @@ public class SignEventsListener implements Listener {
                     return;
                 } else {
                     try {
-                        final double teste = Double.parseDouble(lines[3]);
+                        double teste = Double.parseDouble(lines[3]);
                         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "tell " + e.getPlayer().getName() + "§a§lPLACA CRIADA! §ePreço: " + teste);
-                    } catch (final Exception erro) {
+                    } catch (Exception erro) {
                         e.getPlayer().sendMessage(Strings.prefix + "§cDigite um Preço Válido! (Apenas Números e Pontos)");
                         return;
                     }
@@ -265,7 +265,7 @@ public class SignEventsListener implements Listener {
                 if (!Variables.WarpsEx.contains(lines[2])) {
                     e.getPlayer().sendMessage(Strings.prefix + "§cWarp Inexistente!");
 
-                    final StringBuilder s = new StringBuilder();
+                    StringBuilder s = new StringBuilder();
                     for (int i = 0; i < Variables.WarpsEx.size(); i++) {
                         if (i != 0) {
                             s.append("§6, ").append(Variables.WarpsEx.get(i));

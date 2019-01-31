@@ -17,13 +17,17 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class CommandJogar implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (Variables.MeelBlock) {
             if (sender.getName().equalsIgnoreCase(Jogadores.Meel)) {
                 sender.sendMessage(Strings.prefix + Strings.semPerm);
                 return true;
             }
+        }
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
         }
         if (!(sender instanceof Player)) {
             sender.sendMessage(Strings.prefix + Strings.inGame);
@@ -35,11 +39,11 @@ public class CommandJogar implements CommandExecutor {
             return true;
         }
 
-        final ArrayList<String> LoreOn = new ArrayList<>();
+        ArrayList<String> LoreOn = new ArrayList<>();
         LoreOn.add("§aStatus: §2ON");
         LoreOn.add("§7§o(Clique para Jogar)");
 
-        final ArrayList<String> LoreMapa = new ArrayList<>();
+        ArrayList<String> LoreMapa = new ArrayList<>();
         LoreMapa.add("§7§oMapa de Aniversário para " + Jogadores.Meel);
         LoreMapa.add("§7§oBy: " + Jogadores.Intro);
         LoreMapa.add("§r");

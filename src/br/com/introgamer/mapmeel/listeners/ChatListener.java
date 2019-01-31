@@ -13,7 +13,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class ChatListener implements Listener {
 
     @EventHandler
-    public void onChat(final AsyncPlayerChatEvent e) {
+    public void onChat(AsyncPlayerChatEvent e) {
         if (Variables.PassouDoTesteActive) {
             if (e.getMessage().contains("oi")) {
                 if (!Variables.NaoPassouDoTeste.contains(e.getPlayer().getName())) {
@@ -62,7 +62,7 @@ public class ChatListener implements Listener {
         }
 
         if (Variables.ChatPrivate.contains(e.getPlayer().getName())) {
-            for (final Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 if (Variables.ChatPrivate.contains(p.getName())) {
                     p.sendMessage(
                         "§6§l[ChatPV] §f" + e

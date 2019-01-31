@@ -22,18 +22,18 @@ import br.com.introgamer.mapmeel.variables.scoreManager;
 public class Listeners implements Listener {
 
     @EventHandler
-    public void onBlockBurn(final BlockBurnEvent e) {
+    public void onBlockBurn(BlockBurnEvent e) {
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "avisoconsole §4§lFOGO!!!!! §cESTÁ ESPALHANDO FOGO NAS COORDENADAS: X: " + e.getBlock().getX() + ", Y: " + e.getBlock().getY() + ", Z: " + e.getBlock().getZ() + "!!!!!!!!");
         e.setCancelled(true);
     }
 
     @EventHandler
-    public void onPlayerDeath(final PlayerDeathEvent e) {
+    public void onPlayerDeath(PlayerDeathEvent e) {
         Methods.Errou();
     }
 
     @EventHandler
-    public void onPlayerMove(final PlayerMoveEvent e) {
+    public void onPlayerMove(PlayerMoveEvent e) {
         if (Bukkit.getWorld("world").isThundering()) {
             Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "toggledownfall");
         }
@@ -147,7 +147,7 @@ public class Listeners implements Listener {
     }
 
     @EventHandler
-    public void onPlayrPickupItem(final PlayerPickupItemEvent e) {
+    public void onPlayrPickupItem(PlayerPickupItemEvent e) {
         if (Jogadores.admins.contains(e.getPlayer().getName())) {
             e.setCancelled(true);
         }

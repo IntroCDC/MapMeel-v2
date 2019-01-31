@@ -11,21 +11,21 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class GodEvents implements Listener {
 
     @EventHandler
-    public void onEntityDamage(final EntityDamageEvent e) {
+    public void onEntityDamage(EntityDamageEvent e) {
         if (Variables.inGod.contains(e.getEntity().getName())) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler
-    public void onEntityDamageByBlock(final EntityDamageByBlockEvent e) {
+    public void onEntityDamageByBlock(EntityDamageByBlockEvent e) {
         if (Variables.inGod.contains(e.getEntity().getName())) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler
-    public void onEntityDamageByEntity(final EntityDamageByEntityEvent e) {
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
         if (Variables.inGod.contains(e.getEntity().getName())) {
             e.setCancelled(true);
         }

@@ -15,7 +15,7 @@ import br.com.introgamer.mapmeel.variables.Variables;
 public class BlockEvents implements Listener {
 
     @EventHandler
-    public void onPlayerBreakBlock(final BlockBreakEvent e) {
+    public void onPlayerBreakBlock(BlockBreakEvent e) {
         if (!Variables.Permitidos.contains(e.getPlayer().getName()) && !Variables.Jogadores.contains(e.getPlayer().getName()) && !e.getPlayer().getName().equalsIgnoreCase(Jogadores.Meel)) {
             e.getPlayer().sendMessage(Strings.prefix + Strings.semPerm);
             e.setCancelled(true);
@@ -51,7 +51,7 @@ public class BlockEvents implements Listener {
     }
 
     @EventHandler
-    public void onPlayerPlaceBlock(final BlockPlaceEvent e) {
+    public void onPlayerPlaceBlock(BlockPlaceEvent e) {
         if (!Variables.Jogadores.contains(e.getPlayer().getName()) && !Variables.Permitidos.contains(e.getPlayer().getName()) && !e.getPlayer().getName().equalsIgnoreCase(Jogadores.Meel)) {
             e.getPlayer().sendMessage(Strings.prefix + Strings.semPerm);
             e.setCancelled(true);

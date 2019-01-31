@@ -15,56 +15,61 @@ import br.com.introgamer.mapmeel.variables.Strings;
 public class CommandPvP implements CommandExecutor {
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(Strings.prefix + Strings.inGame);
             return true;
         }
 
-        final ItemStack Sopa = new ItemStack(Material.MUSHROOM_SOUP);
-        final ItemMeta SopaMeta = Sopa.getItemMeta();
+        if (!sender.isOp()) {
+            sender.sendMessage(Strings.prefix + Strings.semPerm);
+            return true;
+        }
+
+        ItemStack Sopa = new ItemStack(Material.MUSHROOM_SOUP);
+        ItemMeta SopaMeta = Sopa.getItemMeta();
         SopaMeta.setDisplayName("§6§lSopa");
         Sopa.setItemMeta(SopaMeta);
 
-        final ItemStack Espada = new ItemStack(Material.DIAMOND_SWORD);
-        final ItemMeta EspadaMeta = Espada.getItemMeta();
+        ItemStack Espada = new ItemStack(Material.DIAMOND_SWORD);
+        ItemMeta EspadaMeta = Espada.getItemMeta();
         EspadaMeta.setDisplayName("§6§lEspada");
         EspadaMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
         Espada.setItemMeta(EspadaMeta);
 
-        final ItemStack Peito = new ItemStack(Material.IRON_CHESTPLATE);
-        final ItemMeta PeitoMeta = Peito.getItemMeta();
+        ItemStack Peito = new ItemStack(Material.IRON_CHESTPLATE);
+        ItemMeta PeitoMeta = Peito.getItemMeta();
         PeitoMeta.setDisplayName("§6§lPeito");
         Peito.setItemMeta(PeitoMeta);
 
-        final ItemStack Capa = new ItemStack(Material.IRON_HELMET);
-        final ItemMeta CapaMeta = Capa.getItemMeta();
+        ItemStack Capa = new ItemStack(Material.IRON_HELMET);
+        ItemMeta CapaMeta = Capa.getItemMeta();
         CapaMeta.setDisplayName("§6§lCapa");
         Capa.setItemMeta(CapaMeta);
 
-        final ItemStack Calca = new ItemStack(Material.IRON_LEGGINGS);
-        final ItemMeta CalcaMeta = Calca.getItemMeta();
+        ItemStack Calca = new ItemStack(Material.IRON_LEGGINGS);
+        ItemMeta CalcaMeta = Calca.getItemMeta();
         CalcaMeta.setDisplayName("§6§lCalca");
         Calca.setItemMeta(CalcaMeta);
 
-        final ItemStack Bota = new ItemStack(Material.IRON_BOOTS);
-        final ItemMeta BotaMeta = Bota.getItemMeta();
+        ItemStack Bota = new ItemStack(Material.IRON_BOOTS);
+        ItemMeta BotaMeta = Bota.getItemMeta();
         BotaMeta.setDisplayName("§6§lBota");
         Bota.setItemMeta(BotaMeta);
 
-        final ItemStack CoguV = new ItemStack(Material.RED_MUSHROOM, 64);
-        final ItemMeta CoguVMeta = CoguV.getItemMeta();
+        ItemStack CoguV = new ItemStack(Material.RED_MUSHROOM, 64);
+        ItemMeta CoguVMeta = CoguV.getItemMeta();
         CoguVMeta.setDisplayName("§6§lCogu");
         CoguV.setItemMeta(CoguVMeta);
 
-        final ItemStack CoguM = new ItemStack(Material.BROWN_MUSHROOM, 64);
-        final ItemMeta CoguMMeta = CoguM.getItemMeta();
+        ItemStack CoguM = new ItemStack(Material.BROWN_MUSHROOM, 64);
+        ItemMeta CoguMMeta = CoguM.getItemMeta();
         CoguMMeta.setDisplayName("§6§lCogu");
         CoguM.setItemMeta(CoguMMeta);
 
-        final ItemStack Pote = new ItemStack(Material.BOWL, 64);
-        final ItemMeta PoteMeta = Pote.getItemMeta();
+        ItemStack Pote = new ItemStack(Material.BOWL, 64);
+        ItemMeta PoteMeta = Pote.getItemMeta();
         PoteMeta.setDisplayName("§6§lPote");
         Pote.setItemMeta(PoteMeta);
 
