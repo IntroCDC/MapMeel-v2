@@ -1,77 +1,18 @@
 package br.com.introgamer.mapmeel;
 
-import java.util.ArrayList;
-
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import br.com.introgamer.mapmeel.commands.CommandAudio;
-import br.com.introgamer.mapmeel.commands.CommandAudioteste;
-import br.com.introgamer.mapmeel.commands.CommandAvisoconsole;
-import br.com.introgamer.mapmeel.commands.CommandBlock;
-import br.com.introgamer.mapmeel.commands.CommandBlockmeel;
-import br.com.introgamer.mapmeel.commands.CommandBroadcast;
-import br.com.introgamer.mapmeel.commands.CommandCavernaultima;
-import br.com.introgamer.mapmeel.commands.CommandChatpv;
-import br.com.introgamer.mapmeel.commands.CommandCheck;
-import br.com.introgamer.mapmeel.commands.CommandCheckpoint;
-import br.com.introgamer.mapmeel.commands.CommandCmdtoconsole;
-import br.com.introgamer.mapmeel.commands.CommandConfirm;
-import br.com.introgamer.mapmeel.commands.CommandEnder;
-import br.com.introgamer.mapmeel.commands.CommandErrou;
-import br.com.introgamer.mapmeel.commands.CommandEvento;
-import br.com.introgamer.mapmeel.commands.CommandFake;
-import br.com.introgamer.mapmeel.commands.CommandFinal;
-import br.com.introgamer.mapmeel.commands.CommandFirework;
-import br.com.introgamer.mapmeel.commands.CommandFlyspeed;
-import br.com.introgamer.mapmeel.commands.CommandGamemode;
-import br.com.introgamer.mapmeel.commands.CommandGmintro;
-import br.com.introgamer.mapmeel.commands.CommandGod;
-import br.com.introgamer.mapmeel.commands.CommandHistoria;
-import br.com.introgamer.mapmeel.commands.CommandInvis;
-import br.com.introgamer.mapmeel.commands.CommandInvsee;
-import br.com.introgamer.mapmeel.commands.CommandJogar;
-import br.com.introgamer.mapmeel.commands.CommandJogo;
-import br.com.introgamer.mapmeel.commands.CommandKit;
-import br.com.introgamer.mapmeel.commands.CommandLeiti;
-import br.com.introgamer.mapmeel.commands.CommandLiberado;
-import br.com.introgamer.mapmeel.commands.CommandMessage;
-import br.com.introgamer.mapmeel.commands.CommandMinions;
-import br.com.introgamer.mapmeel.commands.CommandMlg;
-import br.com.introgamer.mapmeel.commands.CommandModoeditor;
-import br.com.introgamer.mapmeel.commands.CommandMoney;
-import br.com.introgamer.mapmeel.commands.CommandPermitidos;
-import br.com.introgamer.mapmeel.commands.CommandPreferencias;
-import br.com.introgamer.mapmeel.commands.CommandPvP;
-import br.com.introgamer.mapmeel.commands.CommandRecarregar;
-import br.com.introgamer.mapmeel.commands.CommandReset;
-import br.com.introgamer.mapmeel.commands.CommandScoremanager;
-import br.com.introgamer.mapmeel.commands.CommandSendchat;
-import br.com.introgamer.mapmeel.commands.CommandSfirework;
-import br.com.introgamer.mapmeel.commands.CommandStop;
-import br.com.introgamer.mapmeel.commands.CommandTeleport;
-import br.com.introgamer.mapmeel.commands.CommandTextura;
-import br.com.introgamer.mapmeel.commands.CommandTfake;
-import br.com.introgamer.mapmeel.commands.CommandTphere;
-import br.com.introgamer.mapmeel.commands.CommandTransformar;
-import br.com.introgamer.mapmeel.commands.CommandVis;
-import br.com.introgamer.mapmeel.commands.CommandWalkspeed;
-import br.com.introgamer.mapmeel.commands.CommandWarp;
-import br.com.introgamer.mapmeel.listeners.BlockEvents;
-import br.com.introgamer.mapmeel.listeners.ChatListener;
-import br.com.introgamer.mapmeel.listeners.CommandsBlocker;
-import br.com.introgamer.mapmeel.listeners.GodEvents;
-import br.com.introgamer.mapmeel.listeners.JogarListener;
-import br.com.introgamer.mapmeel.listeners.Listeners;
-import br.com.introgamer.mapmeel.listeners.MOTDManager;
-import br.com.introgamer.mapmeel.listeners.SignEventsListener;
+import br.com.introgamer.mapmeel.commands.*;
+import br.com.introgamer.mapmeel.listeners.*;
 import br.com.introgamer.mapmeel.variables.Jogadores;
 import br.com.introgamer.mapmeel.variables.Locations;
 import br.com.introgamer.mapmeel.variables.Strings;
 import br.com.introgamer.mapmeel.variables.Variables;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
 
@@ -148,6 +89,10 @@ public class Main extends JavaPlugin {
         this.getCommand("textura").setExecutor(new CommandTextura());
         this.getCommand("invis").setExecutor(new CommandInvis());
         this.getCommand("historia").setExecutor(new CommandHistoria());
+
+        Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(this, "kindome:pm");
+        this.getCommand("complete").setExecutor(new CommandComplete());
 
         Variables.plugin = this;
 

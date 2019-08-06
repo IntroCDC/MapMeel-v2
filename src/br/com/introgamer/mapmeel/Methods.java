@@ -1,17 +1,12 @@
 package br.com.introgamer.mapmeel;
 
-import java.util.ArrayList;
-
+import br.com.introgamer.mapmeel.variables.*;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import br.com.introgamer.mapmeel.variables.Jogadores;
-import br.com.introgamer.mapmeel.variables.Locations;
-import br.com.introgamer.mapmeel.variables.Strings;
-import br.com.introgamer.mapmeel.variables.Variables;
-import br.com.introgamer.mapmeel.variables.scoreManager;
+import java.util.ArrayList;
 
 public class Methods {
 
@@ -75,7 +70,13 @@ public class Methods {
 
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "playsound mapmeel.errou @a -1662 50 639 50000 1");
 
-        if (Variables.failstotal == 50) {
+        if (Variables.failstotal % 50 == 0) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                p.sendTitle("§6§l#Meel" + Variables.failstotal + "Deaths", "§7Será que consegue " + (Variables.failstotal + 50) + "? kkkkkk ;3 (zuera kk)");
+            }
+        }
+
+        /*if (Variables.failstotal == 50) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel50Deaths", "§7Será que consegue 100? kkkkkk ;3 (zuera kk)");
             }
@@ -115,7 +116,7 @@ public class Methods {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 p.sendTitle("§6§l#Meel500Deaths", "§7Carai '=' 500 Deaths em kk");
             }
-        }
+        }*/
     }
 
     public static void PararAudio() {

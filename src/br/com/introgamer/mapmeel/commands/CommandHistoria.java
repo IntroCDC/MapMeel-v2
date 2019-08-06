@@ -1,5 +1,6 @@
 package br.com.introgamer.mapmeel.commands;
 
+import br.com.introgamer.mapmeel.teatro.HistoriaV2;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,6 +32,7 @@ public class CommandHistoria implements CommandExecutor {
         }
 
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "playsound mapmeel.historia @a -1662 50 639 50000 1");
+        HistoriaV2.startAll();
 
         return false;
     }
