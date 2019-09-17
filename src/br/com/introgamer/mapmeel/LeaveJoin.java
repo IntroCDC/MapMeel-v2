@@ -14,9 +14,23 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class LeaveJoin implements Listener {
+
+    @EventHandler
+    public void onJoin(PlayerResourcePackStatusEvent event) throws Exception {
+        if (event.getStatus().equals(PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED)) {
+            event.getPlayer().sendMessage(Strings.prefix + "§f§oTextura carregada!");
+        } else if (event.getStatus().equals(PlayerResourcePackStatusEvent.Status.ACCEPTED)) {
+            event.getPlayer().sendMessage(Strings.prefix + "§f§oBaixando...");
+        } else if (event.getStatus().equals(PlayerResourcePackStatusEvent.Status.DECLINED)) {
+            event.getPlayer().kickPlayer(Strings.prefix + "§4§o§lO uso de textura do MapMeel v2 é obrigatório!");
+        } else {
+            event.getPlayer().kickPlayer(Strings.prefix + "§4§o§lO uso de textura do MapMeel v2 é obrigatório! (Ocorreu um erro)");
+        }
+    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
@@ -54,7 +68,8 @@ public class LeaveJoin implements Listener {
             @Override
             public void run() {
                 e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.NOTE_BASS, 1, 50000);
-                e.getPlayer().sendMessage(Strings.prefix + "§fLink para baixar textura atualizada: §a§lhttp://www.mapmeel.com.br/assets/template/files/MapMeelv2Texture.zip");
+                // e.getPlayer().sendMessage(Strings.prefix + "§fLink para baixar textura atualizada: §a§lhttp://www.mapmeel.com.br/assets/template/files/MapMeelv2Texture.zip");
+                e.getPlayer().setResourcePack("http://local.introbase64.com.br:8080/MapMeelv2Texture.zip");
             }
         }.runTaskLater(Variables.plugin, 100L);
 
